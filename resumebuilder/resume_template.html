@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="user.css">
+  <title>Resume Template</title>
+  <style>
+    /* CSS styles for the resume template */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      background-color: #fff;
+      border: 4px solid #3498db; /* Thick blue border */
+      padding: 20px;
+    }
+
+    h2 {
+      color: #3498db; /* Blue color for headings */
+      background-color: #f9f9f9; /* Light background color for headings */
+      padding: 8px;
+      margin-top: 20px;
+      font-weight: bold;
+      border-left: 4px solid #3498db; /* Left border for headings */
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    button[type="submit"] {
+      padding: 10px 20px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #555;
+    }
+
+    .resume {
+      background-color: #607e90; /* Light blue background for resume */
+      border: 4px solid #3498db; /* Thick blue border */
+      padding: 20px;
+      margin-top: 20px;
+    }
+
+    .resume img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin-bottom: 20px;
+    }
+
+    .resume h1,
+    .resume h2,
+    .resume h3 {
+      color: #3498db; /* Blue color for headings */
+      font-weight: bold;
+      background-color: #f9f9f9; /* Light background color for headings */
+      padding: 8px;
+      margin-top: 20px;
+      border-left: 4px solid #3498db; /* Left border for headings */
+    }
+
+    .resume ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .resume ul li {
+      margin-bottom: 10px;
+    }
+
+    /* Section separators */
+    .resumeSection {
+      border-top: 2px solid #3498db; /* Highlighted separator line */
+      margin-top: 20px;
+    }
+
+    .resumeSectionTitle {
+      color: #3498db; /* Blue color for section titles */
+      background-color: #f9f9f9; /* Light background color for section titles */
+      padding: 8px;
+      margin-top: 20px;
+      font-weight: bold;
+      border-left: 4px solid #3498db; /* Left border for section titles */
+    }
+
+    .resumeSectionContent {
+      padding-left: 16px; /* Indent content within sections */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Enter Your Details</h2>
+    <button onclick="handleProfileImageClick()">Upload Your Image</button>
+    <input type="file" id="profile-image-input" style="display: none;" accept="image/*">
+    <form id="user-details-form">
+      <!-- Personal Details -->
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" pattern="[A-Za-z ]+" title="Name should contain only alphabets" required>
+      </div>
+      <div class="form-group">
+        <label for="contact">Contact:</label>
+        <input type="text" id="contact" name="contact" pattern="[0-9]{0,10}" title="Contact should contain maximum 10 digits" required>
+        <span id="contact-error" class="error-message"></span>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="linkedin">LinkedIn Profile URL:</label>
+        <input type="text" id="linkedin" name="linkedin">
+      </div>
+      
+      <!-- Education Details -->
+      <div class="form-group">
+        <label for="education">Field of Education:</label>
+        <input type="text" id="education" name="education[]" required>
+      </div>
+      <div id="education-container"></div>
+      
+      <!-- Technical Skills -->
+      <div class="skills" id="technical-skills-container">
+        <label for="technical-skills">Technical Skills:</label>
+        <input type="text" id="technical-skills" name="technical-skills" placeholder="Enter technical skills" required>
+        <button type="button" onclick="addSkill('technical-skills')">Add Skill</button>
+      </div>
+
+      <!-- Soft Skills -->
+      <div class="skills" id="soft-skills-container">
+        <label for="soft-skills">Soft Skills:</label>
+        <input type="text" id="soft-skills" name="soft-skills" placeholder="Enter soft skills" required>
+        <button type="button" onclick="addSkill('soft-skills')">Add Skill</button>
+      </div>
+
+      <!-- Hobbies -->
+      <div class="skills" id="hobbies-container">
+        <label for="hobbies">Hobbies:</label>
+        <input type="text" id="hobbies" name="hobbies[]" placeholder="Enter hobbies" required>
+        <button type="button" onclick="addHobby()">Add Hobby</button>
+      </div>
+
+      <!-- Certifications -->
+      <div class="skills" id="certifications-container">
+        <label for="certifications">Certifications:</label>
+        <input type="text" id="certifications" name="certifications[]" placeholder="Enter certifications" required>
+        <button type="button" onclick="addCertification()">Add Certification</button>
+      </div>
+
+      <!-- Projects -->
+      <div class="form-group">
+        <label for="projects">Projects Summary:</label>
+        <textarea id="projects" name="projects" rows="5" placeholder="Enter projects summary" required></textarea>
+      </div>
+      
+      <!-- Professional Summary -->
+      <div class="form-group">
+        <label for="professional-summary">Professional Summary:</label>
+        <textarea id="professional-summary" name="professional-summary" rows="5" required></textarea>
+      </div>
+      
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <div class="resume" id="resume">
+    <!-- Resume template content -->
+    <img id="profile-image" src="profile.jpeg" alt="Profile Image">
+    <h1 id="resume-name"></h1>
+    <p>Contact: <span id="resume-contact"></span></p>
+      <p>Email: <span id="resume-email"></span></p>
+      <p>LinkedIn: <span id="resume-linkedin"></span></p>
+      
+      <h2>Education</h2>
+      <ul id="resume-education"></ul>
+      
+      <h2>Skills</h2>
+      <h3>Technical Skills</h3>
+      <ul id="resume-technical-skills"></ul>
+      <h3>Soft Skills</h3>
+      <ul id="resume-soft-skills"></ul>
+  
+      <h2>Hobbies</h2>
+      <ul id="resume-hobbies"></ul>
+  
+      <h2>Certifications</h2>
+      <ul id="resume-certifications"></ul>
+  
+      <h2>Projects</h2>
+      <p id="resume-projects"></p>
+  
+      <h2>Professional Summary</h2>
+      <p id="resume-professional-summary"></p>
+    </div>
+  <script src="user.js"></script>
+</body>
+</html>
