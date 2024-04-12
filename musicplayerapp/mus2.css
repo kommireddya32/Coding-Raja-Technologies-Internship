@@ -1,0 +1,123 @@
+body {
+    background-color: #f5f5f5;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.player {
+    background-image: url("file:///C:/Users/HP/Desktop/musicplayerapp/img.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 90%;
+    max-width: 600px;
+}
+
+.details {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.track-art {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 20px;
+}
+
+.track-art img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.track-info {
+    flex: 1;
+}
+
+.track-name {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.track-artist {
+    color: #666;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex: 1;
+}
+
+.buttons > div {
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    background-color: #ddd;
+}
+
+.buttons > div:hover {
+    background-color: #ccc;
+}
+
+.slider_container {
+    flex: 2;
+    display: flex;
+    align-items: center;
+}
+
+.slider_container input[type="range"] {
+    width: 100%;
+    margin: 0 10px;
+}
+
+.volume-container {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.volume-container input[type="range"] {
+    margin: 0 10px;
+}
+
+.playlist-buttons {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.playlist-buttons button {
+    cursor: pointer;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 1em;
+}
+
+.playlist-buttons button:hover {
+    background-color: #0056b3;
+}
